@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+	<h2><center>Address Book</center></h2>
+	<h3 align="right"><a href="/logout">Logout</a></h3><br>
+	<div align="right"><a href="/addUser">Add User</a></div>
+	<h3 style="margin-left: 20%;">List of Users</h3>
+	<style>
+	.list{
+	margin-left: 20%;
+	}
+	</style>
+</head>
+<body>
+
+
+<script>
+var users = {{.}};
+var myObj = JSON.parse(users);
+var HTML = ["<ul class='list'>"];
+for (var i=0,len=myObj.length; i<len; i++) {
+  HTML.push("<li class='user"+i+"'><div>" + myObj[i].firstname +" "+ myObj[i].lastname+ '<a href="/editUser?username='+myObj[i].username+'"><img  src="edit.jpg" alt="Edit" title="edit" align="right" style="margin-right: 55%;"></a></div>' + myObj[i].email+ "</div><div> "+ myObj[i].contact + "</div><div>" + myObj[i].address  + "</div></li><br>");
+  }
+HTML.push("</ul>");
+var str = HTML.join("");
+document.write(str);
+</script>
+
+</body>
+</html>
